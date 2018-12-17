@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: "pages#root"
+  get "/tictactoe", to: "pages#root"
 
   namespace :api do
     namespace :v1 do
