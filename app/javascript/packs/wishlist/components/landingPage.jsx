@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/stylesheets/list/list'
+import '../assets/stylesheets/wishlist/list'
 
 class LandingPage extends React.Component {
   render() {
