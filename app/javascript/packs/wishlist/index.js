@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import Routes from './routes';
 
 document.addEventListener('DOMContentLoaded', () => {
-    ReactDOM.render(
-        <Routes />, document.getElementById('wishlist-app'),
-    )
+  ReactDOM.render(
+    <Routes />, document.getElementById('wishlist-app'),
+  )
 });
 
