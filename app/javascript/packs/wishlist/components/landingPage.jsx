@@ -6,31 +6,36 @@ import List from './lists/list.jsx'
 class LandingPage extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      lists: []
-    }
+    this.state = {lists: [], isLoading: true}
   }
 
   componentDidMount() {
     axios
       .get('api/v1/lists.json')
       .then(response => {
-        this.setState(response.data)
+        this.setState({lists: response.data, isLoading: false})
       })
       .catch(error => console.log(error))
   }
 
   render() {
-    return(
-      <div>
-        {this.state.lists.map(list =>
-          <List 
-            key={list.id}
-            listData={list.data}
-          />
-        )}
-      </div>
-    )
+    if (this.state.isLoading) {
+      return <div>Loading..</div>
+    } else {
+      return(
+        <div>
+          {
+            this.state.lists.map(list =>
+            <List 
+              key={list.id}
+              listTitle={list.title}
+              listDescription={list.description}
+            />
+            )
+          }
+        </div>
+      )
+    }
   }
 }
 

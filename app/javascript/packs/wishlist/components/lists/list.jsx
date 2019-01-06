@@ -6,14 +6,12 @@ class List extends React.Component {
     super(props)
   }
 
-  render(props) {
+  render() {
     return(
       <div className={'list container border border-primary'}>
-        <h2 className="title">Wishlist X</h2>
-        <h4>Created: then</h4>
-        <h4>Last updated: now</h4>
+        <h2 className="title">{this.props.listTitle}</h2>
         <ul>
-          <Item />
+          <li>{this.props.listDescription}</li>
         </ul>
       </div>
     )
