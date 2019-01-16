@@ -16,13 +16,13 @@ asl_modules.each do |set|
 end
 
 5.times do
-  List.where(title: 'Groceries').first.items << Item.create!(name: Faker::Food.ingredient, description: Faker::Lorem.words, url: '')
+  List.where(title: 'Groceries').first.items << Item.create!(name: Faker::Food.ingredient, description: Faker::Lorem.words(2).join(' '), url: '')
 end
 
 3.times do
   List.where(title: 'Music wants').first.items << Item.create!(
     name: "#{Faker::Music.band} - #{Faker::Music.album}", 
-    description: Faker::Lorem.words, 
+    description: Faker::Lorem.words(5).join(' '), 
     url: Faker::Internet.domain_name
   )
 end
