@@ -11,7 +11,11 @@ class List extends React.Component {
       <div className={'list container border border-primary'}>
         <h2 className="title">{this.props.listTitle}</h2>
         <ul>
-          <li>{this.props.listDescription}</li>
+          <li>
+            <Item
+              itemDescription = {this.props.listDescription}
+            />
+          </li>
         </ul>
       </div>
     )
