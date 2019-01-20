@@ -5,7 +5,7 @@ module Api
 
       # GET /lists.json
       def index
-        respond_with List.all
+        @lists = List.all
       end
 
       # GET /lists/1.json

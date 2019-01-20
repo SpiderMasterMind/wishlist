@@ -9,14 +9,18 @@ class List extends React.Component {
   render() {
     return(
       <div className={'list container border border-primary'}>
-        <h2 className="title">{this.props.listTitle}</h2>
-        <ul>
-          <li>
-            <Item
-              itemDescription = {this.props.listDescription}
-            />
-          </li>
-        </ul>
+        <h2 className="title">Title: {this.props.listTitle}</h2>
+        <h4 className="description">Description: {this.props.listDescription}</h4>
+          {
+            this.props.listItems.map(item =>
+              <Item
+                key={item.item_id}
+                itemName={item.name}
+                itemDescription={item.description}
+                itemUrl={item.url}
+              />
+            )
+          }
       </div>
     )
   }
