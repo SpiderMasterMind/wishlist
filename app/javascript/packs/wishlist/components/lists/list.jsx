@@ -1,6 +1,6 @@
 import React from 'react';
 import Item from './items/item.jsx';
-import CreateItem from './items/create.jsx';
+import CreateItem from './items/createContainer.jsx';
 
 class List extends React.Component {
   constructor(props) {
