@@ -6,7 +6,6 @@ class CreateContainer extends React.Component {
   constructor (props) {
     super(props)
     // this.props.listId
-    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleClear = this.handleClear.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -33,6 +32,8 @@ class CreateContainer extends React.Component {
         name: event.target.value
       }
     })
+
+    console.log(this.state)
   }
 
   render() {
@@ -40,9 +41,14 @@ class CreateContainer extends React.Component {
       <form className="container" onSubmit={this.handleSubmit}>
         <Input 
           type={'text'}
-          placeholder={'placeholder'}
-          value={''}
-          name={'name'}
+          placeholder={'Item Name'}
+          name={'item-name'}
+          onChange={this.handleChange}
+        />
+        <Input 
+          type={'text'}
+          placeholder={'Item Description'}
+          name={'item-description'}
           onChange={this.handleChange}
         />
       </form>

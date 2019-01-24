@@ -8,9 +8,9 @@ const Input = (props) => {
         className="form-input"
         name={props.name}
         type={props.type}
-        value={props.value}
+        value={props.newItem}
         placeholder={props.placeholder}
-        onChange={(e) => props.onChange(e)}
+        onChange={e => props.onChange(e)}
       />
     </div>
   )
