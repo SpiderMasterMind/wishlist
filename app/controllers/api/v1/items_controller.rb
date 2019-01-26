@@ -3,12 +3,10 @@ module Api
     class ItemsController < BaseController
       before_action :set_item, only: [:show, :edit, :update, :destroy]
 
-      # GET /items.json
       def index
         respond_with Item.all
       end
 
-      # GET /items/1.json
       def show
         respond_with Item.find(params[:id])
       end
@@ -21,7 +19,8 @@ module Api
       end
 
       def create
-        @item = Item.new(item_params)
+        @list = List.find(item_params.fetch(:list_id))
+        @item = Item.new(item_params.except(:list_id))
 
         respond_to do |format|
           if @item.save
@@ -61,7 +60,7 @@ module Api
       end
 
       def item_params
-        params.require(:item).permit(:name, :description, :url)
+        params.require(:item).permit(:list_id, :name, :description, :url)
       end
     end
   end
