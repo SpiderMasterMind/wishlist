@@ -27,8 +27,8 @@ class LandingPage extends React.Component {
           {
             this.state.response.lists.map(list =>
             <List 
-              key={list.list_id}
-              listId={list.list_id}
+              key={list.id}
+              listId={list.id}
               listTitle={list.title}
               listDescription={list.description}
               listItems={list.items}

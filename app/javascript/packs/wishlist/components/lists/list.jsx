@@ -14,8 +14,8 @@ class List extends React.Component {
   }
 
   handleCreateItem(response) {
-    this.setState({
-      listItems: this.props.listItems.concat(response.data)
+    this.setState((prevState, props) => {
+      return { listItems: prevState.listItems.concat(response.data) }
     })
   }
 
@@ -34,9 +34,9 @@ class List extends React.Component {
         </div>
         <div className={'items'}>
           {
-            this.props.listItems.map(item =>
+            this.state.listItems.map(item =>
               <Item
-                key={item.item_id}
+                key={item.id}
                 itemName={item.name}
                 itemDescription={item.description}
                 itemUrl={item.url}
