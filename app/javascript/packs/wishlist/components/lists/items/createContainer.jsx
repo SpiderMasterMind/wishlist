@@ -20,7 +20,7 @@ class CreateContainer extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    axios.post('/api/v1/items', {
+    axios.post('/api/v1/items.json', {
       item: this.state
     }).then(function (response) {
       console.log(response);

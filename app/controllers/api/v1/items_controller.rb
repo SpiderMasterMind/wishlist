@@ -24,10 +24,11 @@ module Api
 
         respond_to do |format|
           if @item.save
-            format.html { redirect_to @item, notice: 'Item was successfully created.' }
-            format.json { render :show, status: :created, location: @item }
+            # format.html { redirect_to @item, notice: 'Item was successfully created.' }
+            #
+            format.json { render :show, status: :created } # removed location header option
           else
-            format.html { render :new }
+            # format.html { render :new }
             format.json { render json: @item.errors, status: :unprocessable_entity }
           end
         end
