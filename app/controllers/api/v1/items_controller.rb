@@ -24,8 +24,7 @@ module Api
 
         respond_to do |format|
           if @item.save
-            # format.html { redirect_to @item, notice: 'Item was successfully created.' }
-            #
+            @list.items << @item
             format.json { render :show, status: :created } # removed location header option
           else
             # format.html { render :new }
