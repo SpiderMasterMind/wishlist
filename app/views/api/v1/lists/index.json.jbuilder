@@ -1,11 +1,10 @@
 json.lists @lists do |list|
+  json.created_at list.created_at
+  json.updated_at list.updated_at
   json.id list.id
   json.title list.title
   json.description list.description
   json.items list.items.each do |item|
-    json.id item.id
-    json.name item.name
-    json.description item.description
-    json.url item.url
+    json.extract! item, :created_at, :updated_at, :id, :name, :description
   end
 end
