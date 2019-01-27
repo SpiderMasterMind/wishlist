@@ -4,9 +4,9 @@ import axios from 'axios';
 // import TextArea from './textArea';
 
 class CreateContainer extends React.Component {
+  // make this a generic item container
   constructor (props) {
     super(props)
-    // this.props.listId
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
 
@@ -22,10 +22,10 @@ class CreateContainer extends React.Component {
     event.preventDefault()
     axios.post('/api/v1/items.json', {
       item: this.state
-    }).then(function (response) {
-      console.log(response);
-    }).catch(function (error) {
-      console.log(error);
+    }).then(response => {
+      this.props.onCreate(response)
+    }).catch(response => {
+      this.props.onCreate(response)
     })
   }
 

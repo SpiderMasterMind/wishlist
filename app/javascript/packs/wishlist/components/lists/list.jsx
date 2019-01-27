@@ -5,6 +5,18 @@ import CreateItem from './items/createContainer.jsx';
 class List extends React.Component {
   constructor(props) {
     super(props)
+    this.handleCreateItem = this.handleCreateItem.bind(this)
+
+    this.state = {
+      listItems: this.props.listItems
+    }
+
+  }
+
+  handleCreateItem(response) {
+    this.setState({
+      listItems: this.props.listItems.concat(response.data)
+    })
   }
 
   render() {
@@ -16,6 +28,7 @@ class List extends React.Component {
           {
             <CreateItem
               listId={this.props.listId}
+              onCreate={this.handleCreateItem}
             />
           }
         </div>

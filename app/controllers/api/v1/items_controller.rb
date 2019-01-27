@@ -23,7 +23,7 @@ module Api
         @item = Item.new(item_params.except(:list_id))
 
         respond_to do |format|
-          if @item.save
+          if @item.save && @list.present?
             @list.items << @item
             format.json { render :show, status: :created } # removed location header option
           else
