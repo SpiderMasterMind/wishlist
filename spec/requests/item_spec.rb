@@ -2,9 +2,12 @@ require 'rails_helper'
 
 RSpec.describe 'item request actions', type: :request do
   it 'returns requested item json' do
-    item = FactoryBot.create(:item)
+    let!(:item) { FactoryBot.create(:item) }
 
     get "/api/v1/items/#{item.id}.json/"
-    expect(response).to render_template(partial: '_item')
+    expect(JSON.parse(response.body).fetch('id')).to eql(item.id)
   end
+
+  it 'updates item and returns updated json'
+  it 'destroys an item and returns the item json'
 end
