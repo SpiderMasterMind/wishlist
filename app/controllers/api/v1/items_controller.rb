@@ -25,10 +25,11 @@ module Api
         respond_to do |format|
           if @item.save && @list.present?
             @list.items << @item
-            format.json { render :show, status: :created } # removed location header option
+            format.json { render :show, status: :created }
           else
-            # format.html { render :new }
-            format.json { render json: @item.errors, status: :unprocessable_entity }
+            format.json do
+              render json: @item.errors, status: :unprocessable_entity
+            end
           end
         end
       end
@@ -36,11 +37,11 @@ module Api
       def update
         respond_to do |format|
           if @item.update(item_params)
-            format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-            format.json { render :show, status: :ok, location: @item }
+            format.json { render :show, status: :ok } 
           else
-            format.html { render :edit }
-            format.json { render json: @item.errors, status: :unprocessable_entity }
+            format.json do
+              render json: @item.errors, status: :unprocessable_entity
+            end
           end
         end
       end
@@ -48,8 +49,7 @@ module Api
       def destroy
         @item.destroy
         respond_to do |format|
-          format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
-          format.json { head :no_content }
+          format.json { render status: :ok }
         end
       end
 
