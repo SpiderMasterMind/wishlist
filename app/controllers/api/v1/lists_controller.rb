@@ -3,14 +3,13 @@ module Api
     class ListsController < BaseController
       before_action :set_list, only: [:show, :edit, :update, :destroy]
 
-      # GET /lists.json
       def index
         @lists = List.all
       end
 
-      # GET /lists/1.json
       def show
-        respond_with List.find(params[:id])
+        @list = List.find(params[:id])
+        @items = @list.items.to_a
       end
 
       def new
