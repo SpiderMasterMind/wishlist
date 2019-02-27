@@ -9,24 +9,16 @@ RSpec.describe 'item request actions', type: :request do
     expect(JSON.parse(response.body).fetch('id')).to eql(item.id)
   end
 
-  it 'updates item and returns updated json', type: :request do
-    headers = {
-      "ACCEPT" => "application/json"
-    }
+  it 'updates an item and returns updated json', type: :request do
     put "/api/v1/items/#{item.id}.json/", 
-      params: { item: { id: item.id } }, 
-      headers: headers
+      params: { item: { id: item.id, description: 'desc' } }
 
     expect(JSON.parse(response.body).fetch('id')).to eql(item.id)
   end
 
   it 'destroys an item and returns the item json', type: :request do
-    headers = {
-      "ACCEPT" => "application/json"
-    }
     delete "/api/v1/items/#{item.id}.json/",
-      params: { item: { id: item.id } }, 
-      headers: headers
+      params: { item: { id: item.id } }
 
     expect(JSON.parse(response.body).fetch('id')).to eql(item.id)
   end
