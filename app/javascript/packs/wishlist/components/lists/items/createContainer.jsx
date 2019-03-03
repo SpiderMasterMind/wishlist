@@ -4,13 +4,33 @@ import axios from 'axios';
 // import TextArea from './textArea';
 
 class CreateContainer extends React.Component {
-  // make this a generic item container
   constructor (props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
 
-    this.state = {
+    this.state = this.initialState()
+  }
+
+  initialState() {
+    if (this.props.containerType === 'create') {
+      return this.createTypeInitialState()
+    } else if (this.props.containerType === 'update') {
+      return this.updateTypeInitialState()
+    }
+  }
+
+  updateTypeInitialState() {
+    return {
+      list_id: this.props.listId,
+      name: 'EGG',
+      description: 'UPDATING',
+      url: '',
+    }
+  }
+
+  createTypeInitialState() {
+    return {
       list_id: this.props.listId,
       name: '',
       description: '',
@@ -18,7 +38,7 @@ class CreateContainer extends React.Component {
     }
   }
 
-  handleSubmit(event) {
+  handleCreateSubmit(event) {
     event.preventDefault()
     axios.post('/api/v1/items.json', {
       item: this.state
@@ -27,6 +47,19 @@ class CreateContainer extends React.Component {
     }).catch(response => {
       this.props.onCreate(response)
     })
+  }
+
+  handleUpdateSubmit(event) {
+    alert('updating')
+    // differnt REST request etc.
+  }
+
+  handleSubmit(event) {
+    if (this.props.containerType === 'create') {
+      handleCreateSubmit(event)
+    } else if (this.props.containerType === 'update') {
+      handleUpdateSubmit(event)
+    }
   }
 
   handleChange(event) {

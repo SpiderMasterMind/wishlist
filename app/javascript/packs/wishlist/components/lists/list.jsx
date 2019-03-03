@@ -1,12 +1,12 @@
 import React from 'react';
 import Item from './items/item.jsx';
-import CreateItem from './items/createContainer.jsx';
+import CreateContainer from './items/createContainer.jsx';
 
 class List extends React.Component {
   constructor(props) {
     super(props)
     this.handleCreateItem = this.handleCreateItem.bind(this)
-
+    this.handleUpdateItem = this.handleUpdateItem.bind(this)
     this.state = {
       listItems: this.props.listItems
     }
@@ -19,6 +19,10 @@ class List extends React.Component {
     })
   }
 
+  handleUpdateItem(response) {
+    alert('updating')
+  }
+
   render() {
     return(
       <div className={'list container border border-primary'}>
@@ -26,7 +30,8 @@ class List extends React.Component {
         <h4 className="description">Description: {this.props.listDescription}</h4>
         <div className={'createModal'}>
           {
-            <CreateItem
+            <CreateContainer
+              containerType='create'
               listId={this.props.listId}
               onCreate={this.handleCreateItem}
             />
@@ -40,6 +45,7 @@ class List extends React.Component {
                 itemName={item.name}
                 itemDescription={item.description}
                 itemUrl={item.url}
+                onUpdate={this.handleUpdateItem}
               />
             )
           }
