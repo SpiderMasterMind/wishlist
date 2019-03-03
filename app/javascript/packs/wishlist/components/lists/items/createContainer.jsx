@@ -14,27 +14,28 @@ class CreateContainer extends React.Component {
 
   initialState() {
     if (this.props.containerType === 'create') {
-      return this.createTypeInitialState()
+      return this.createInitialState()
     } else if (this.props.containerType === 'update') {
-      return this.updateTypeInitialState()
+      return this.updateInitialState()
     }
   }
 
-  updateTypeInitialState() {
+  updateInitialState() {
+    // the right props are getting through to here.
     return {
       list_id: this.props.listId,
-      name: 'EGG',
-      description: 'UPDATING',
-      url: '',
+      name: this.props.itemName,
+      description: this.props.itemDescription,
+      url: this.props.itemUrl
     }
   }
 
-  createTypeInitialState() {
+  createInitialState() {
     return {
       list_id: this.props.listId,
       name: '',
       description: '',
-      url: '',
+      url: ''
     }
   }
 
@@ -50,15 +51,16 @@ class CreateContainer extends React.Component {
   }
 
   handleUpdateSubmit(event) {
-    alert('updating')
+    event.preventDefault()
+    alert('updating in Container component')
     // differnt REST request etc.
   }
 
   handleSubmit(event) {
     if (this.props.containerType === 'create') {
-      handleCreateSubmit(event)
+      this.handleCreateSubmit(event)
     } else if (this.props.containerType === 'update') {
-      handleUpdateSubmit(event)
+      this.handleUpdateSubmit(event)
     }
   }
 
@@ -71,23 +73,27 @@ class CreateContainer extends React.Component {
   }
 
   render() {
+    // listId no passed on update action
     return(
       <form className="container" onSubmit={this.handleSubmit}>
         <Input 
           type={'text'}
-          placeholder={'Item Name'}
+          placeholder={'name'}
+          value={this.state.name}
           name={'name'}
           onChange={this.handleChange}
         />
         <Input 
           type={'text'}
-          placeholder={'Item Description'}
+          placeholder={'description'}
+          value={this.state.description}
           name={'description'}
           onChange={this.handleChange}
         />
          <Input 
           type={'text'}
-          placeholder={'url'}
+          placeholder={'URL'}
+          value={this.state.url}
           name={'url'}
           onChange={this.handleChange}
         />

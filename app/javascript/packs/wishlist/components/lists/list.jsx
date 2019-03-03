@@ -20,13 +20,13 @@ class List extends React.Component {
   }
 
   handleUpdateItem(response) {
-    alert('updating')
+    alert('list component update')
   }
 
   render() {
     return(
       <div className={'list container border border-primary'}>
-        <h2 className="title">Title: {this.props.listTitle}</h2>
+        <h2 className="title">{this.props.listTitle}</h2>
         <h4 className="description">Description: {this.props.listDescription}</h4>
         <div className={'createModal'}>
           {
@@ -45,6 +45,8 @@ class List extends React.Component {
                 itemName={item.name}
                 itemDescription={item.description}
                 itemUrl={item.url}
+                itemId={item.id}
+                listId={this.props.listId}
                 onUpdate={this.handleUpdateItem}
               />
             )

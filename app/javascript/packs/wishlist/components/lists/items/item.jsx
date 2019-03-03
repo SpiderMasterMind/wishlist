@@ -16,10 +16,12 @@ class Item extends React.Component {
         </ul>
         <CreateContainer
           containerType='update'
-          listId={this.props.key}
+          key={this.props.itemId}
           itemName={this.props.itemName}
           itemDescription={this.props.itemDescription}
-          itemUrl={this.props.itemUurl}
+          itemUrl={this.props.itemUrl}
+          itemId={this.props.itemId}
+          listId={this.props.listId}
           onUpdate={this.props.onUpdate}
         />
       </div>
